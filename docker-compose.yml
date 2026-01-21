@@ -1,0 +1,16 @@
+services:
+  sonar-embeddings:
+    build: .
+    container_name: sonar-embedding-server
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    ports:
+      - "8808:8808"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+              device_ids: ["0"]
+
